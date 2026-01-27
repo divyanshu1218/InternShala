@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # MongoDB connection
-MONGO_URI = os.environ.get('MONGO_URI', 'mongodb://localhost:27017/videostreamapp')
+MONGO_URI = os.environ.get('MONGO_URI', 'mongodb://localhost:27017/videodb')
 
 def seed_database():
     try:
