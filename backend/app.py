@@ -2,6 +2,8 @@ from flask import Flask, jsonify
 from backend.config import Config
 from backend.extensions import init_extensions
 from backend.routes.auth import auth_bp
+from backend.routes.dashboard import dashboard_bp
+from backend.routes.video import video_bp
 
 def create_app(config_class=Config):
     app = Flask(__name__)
@@ -12,6 +14,8 @@ def create_app(config_class=Config):
 
     # Register Blueprints
     app.register_blueprint(auth_bp, url_prefix='/auth')
+    app.register_blueprint(dashboard_bp, url_prefix='/dashboard')
+    app.register_blueprint(video_bp, url_prefix='/video')
 
     @app.route('/health')
     def health_check():
