@@ -11,6 +11,10 @@ We will deploy the Flask API to VercelServerless Functions using the `vercel.jso
 ### Prerequisites
 *   [Vercel CLI](https://vercel.com/docs/cli) installed (`npm i -g vercel`)
 *   Vercel account
+*   **MongoDB Atlas Cluster** (Required for both local and production)
+
+### Web Deployment Note
+The video player has been updated to use `iframe` for web compatibility, so it works seamlessly on deployed web versions.
 
 ### Steps
 1.  **Navigate to Backend:**

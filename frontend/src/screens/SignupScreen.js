@@ -9,18 +9,24 @@ export default function SignupScreen({ navigation }) {
     const [loading, setLoading] = useState(false);
 
     const handleSignup = async () => {
+        console.log('Signup button clicked');
+
         if (!name || !email || !password) {
-            Alert.alert('Error', 'Please fill in all fields');
+            console.error('Validation failed: Missing fields');
+            alert('Please fill in all fields');
             return;
         }
 
+        console.log('Attempting signup with:', { name, email });
         setLoading(true);
         try {
-            await authService.signup(name, email, password);
-            Alert.alert('Success', 'Account created! Please login.');
+            const result = await authService.signup(name, email, password);
+            console.log('Signup successful:', result);
+            alert('Account created! Please login.');
             navigation.navigate('Login');
         } catch (error) {
-            Alert.alert('Signup Failed', error.error || 'Something went wrong');
+            console.error('Signup error:', error);
+            alert('Signup Failed: ' + (error.error || error.message || 'Something went wrong'));
         } finally {
             setLoading(false);
         }

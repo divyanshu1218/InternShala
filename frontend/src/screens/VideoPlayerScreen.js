@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ActivityIndicator, Alert } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator, Alert, Platform, TouchableOpacity } from 'react-native';
 import { WebView } from 'react-native-webview'; // Requires installation
 import { videoService } from '../services/videoService';
 
-export default function VideoPlayerScreen({ route }) {
+export default function VideoPlayerScreen({ route, navigation }) {
     const { videoId, playbackToken, title, description } = route.params;
     const [streamUrl, setStreamUrl] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -34,15 +34,28 @@ export default function VideoPlayerScreen({ route }) {
 
     return (
         <View style={styles.container}>
+            <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+                <Text style={styles.backButtonText}>← Back</Text>
+            </TouchableOpacity>
+
             {streamUrl ? (
                 <View style={styles.videoContainer}>
-                    <WebView
-                        source={{ uri: streamUrl }}
-                        style={styles.webview}
-                        javaScriptEnabled={true}
-                        domStorageEnabled={true}
-                        allowsFullscreenVideo={true}
-                    />
+                    {Platform.OS === 'web' ? (
+                        <iframe
+                            src={streamUrl}
+                            style={{ width: '100%', height: '100%', border: 'none' }}
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                        />
+                    ) : (
+                        <WebView
+                            source={{ uri: streamUrl }}
+                            style={styles.webview}
+                            javaScriptEnabled={true}
+                            domStorageEnabled={true}
+                            allowsFullscreenVideo={true}
+                        />
+                    )}
                 </View>
             ) : (
                 <View style={styles.centered}>
@@ -86,5 +99,14 @@ const styles = StyleSheet.create({
     description: {
         color: '#ccc',
         fontSize: 16,
+    },
+    backButton: {
+        padding: 15,
+        backgroundColor: '#000',
+    },
+    backButtonText: {
+        color: '#fff',
+        fontSize: 16,
+        fontWeight: 'bold',
     },
 });

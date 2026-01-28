@@ -4,13 +4,19 @@ Run this script to populate the database with initial video data.
 """
 from pymongo import MongoClient
 from datetime import datetime
+# Add project root to path
 import os
-from dotenv import load_dotenv
+import sys
 
-load_dotenv()
+# Assume we are running this script, so we need to find the root folder (one level up from this script)
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, project_root)
+
+from backend.config import Config
 
 # MongoDB connection
-MONGO_URI = os.environ.get('MONGO_URI', 'mongodb://localhost:27017/videodb')
+MONGO_URI = Config.MONGO_URI
+print(f"Using MongoDB URI: {MONGO_URI.split('@')[1] if '@' in MONGO_URI else 'Local'}")
 
 def seed_database():
     try:

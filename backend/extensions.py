@@ -6,4 +6,5 @@ from flask_cors import CORS
 mongo = PyMongo()
 jwt = JWTManager()
 bcrypt = Bcrypt()
-cors = CORS()
+# Allow all origins for development (restrict in production)
+cors = CORS(resources={r"/*": {"origins": "*"}})

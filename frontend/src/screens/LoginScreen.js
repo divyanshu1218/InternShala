@@ -8,25 +8,25 @@ export default function LoginScreen({ navigation, setPayload }) {
     const [loading, setLoading] = useState(false);
 
     const handleLogin = async () => {
+        console.log('Login button clicked');
+
         if (!email || !password) {
-            Alert.alert('Error', 'Please fill in all fields');
+            console.error('Validation failed: Missing fields');
+            alert('Please fill in all fields');
             return;
         }
 
+        console.log('Attempting login with:', { email });
         setLoading(true);
         try {
-            await authService.login(email, password);
-            // Let App.js know auth state changed via context or prop callback
-            // For simplicity in this thin client, we assume parent navigator re-checks token
-            // or we manually trigger state update. 
-            // A common pattern is having an AuthContext. 
-            // For now, let's call a prop if passed, or rely on navigation flow if stack is reset.
+            const result = await authService.login(email, password);
+            console.log('Login successful:', result);
 
-            // Actually, navigation flow usually requires global state for auth.
-            // We will implement a simple AuthContext in App.js later.
-            if (setPayload) setPayload(true); // Trigger re-render in root
+            // Trigger auth state update
+            if (setPayload) setPayload(true);
         } catch (error) {
-            Alert.alert('Login Failed', error.error || 'Something went wrong');
+            console.error('Login error:', error);
+            alert('Login Failed: ' + (error.error || error.message || 'Something went wrong'));
         } finally {
             setLoading(false);
         }

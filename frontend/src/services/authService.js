@@ -1,12 +1,11 @@
-import * as SecureStore from 'expo-secure-store';
-import api from '../config/api';
+import api, { storage } from '../config/api';
 
 export const authService = {
     async login(email, password) {
         try {
             const response = await api.post('/auth/login', { email, password });
             if (response.data.token) {
-                await SecureStore.setItemAsync('userToken', response.data.token);
+                await storage.setItem('userToken', response.data.token);
             }
             return response.data;
         } catch (error) {
@@ -27,7 +26,7 @@ export const authService = {
         try {
             // Optional: Notify backend
             // await api.post('/auth/logout');
-            await SecureStore.deleteItemAsync('userToken');
+            await storage.deleteItem('userToken');
         } catch (error) {
             console.error('Logout error', error);
         }
@@ -43,6 +42,6 @@ export const authService = {
     },
 
     async getToken() {
-        return await SecureStore.getItemAsync('userToken');
+        return await storage.getItem('userToken');
     }
 };

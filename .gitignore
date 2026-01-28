@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+.env
+
+# Flask
+instance/
+.webassets-cache
+
+# Node/Frontend
+node_modules/
+npm-debug.log
+yarn-error.log
+.expo/
+web-build/
+dist/
+
+# IDEs
+.vscode/
+.idea/
+
+# System
+.DS_Store
+Thumbs.db
+
+# Project Specific
+backend/venv/
+backend/.env
