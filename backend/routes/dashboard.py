@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 from flask_jwt_extended import jwt_required
-from backend.services.video_service import VideoService
+from services.video_service import VideoService
 
 dashboard_bp = Blueprint('dashboard', __name__)
 

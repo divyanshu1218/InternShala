@@ -1,9 +1,9 @@
 from flask import Flask, jsonify
-from backend.config import Config
-from backend.extensions import mongo, jwt, bcrypt, cors
-from backend.routes.auth import auth_bp
-from backend.routes.dashboard import dashboard_bp
-from backend.routes.video import video_bp
+from config import Config
+from extensions import mongo, jwt, bcrypt, cors
+from routes.auth import auth_bp
+from routes.dashboard import dashboard_bp
+from routes.video import video_bp
 
 def create_app(config_class=Config):
     app = Flask(__name__)

@@ -1,5 +1,5 @@
 from flask_jwt_extended import create_access_token
-from backend.models.user import User
+from models.user import User
 
 class AuthService:
     @staticmethod

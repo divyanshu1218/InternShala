@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required
-from backend.services.video_service import VideoService
+from services.video_service import VideoService
 
 video_bp = Blueprint('video', __name__)
 

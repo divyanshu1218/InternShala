@@ -1,4 +1,4 @@
-from backend.extensions import mongo
+from extensions import mongo
 from bson import ObjectId
 
 class Video:

@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from backend.services.auth_service import AuthService
+from services.auth_service import AuthService
 
 auth_bp = Blueprint('auth', __name__)
 

@@ -1,4 +1,4 @@
-from backend.extensions import mongo, bcrypt
+from extensions import mongo, bcrypt
 from datetime import datetime
 from bson import ObjectId
 

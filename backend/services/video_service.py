@@ -1,5 +1,5 @@
-from backend.models.video import Video
-from backend.utils.jwt_utils import create_playback_token, decode_playback_token
+from models.video import Video
+from utils.jwt_utils import create_playback_token, decode_playback_token
 
 class VideoService:
     @staticmethod

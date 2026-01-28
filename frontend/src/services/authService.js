@@ -5,8 +5,8 @@ export const authService = {
     async login(email, password) {
         try {
             const response = await api.post('/auth/login', { email, password });
-            if (response.data.access_token) {
-                await SecureStore.setItemAsync('userToken', response.data.access_token);
+            if (response.data.token) {
+                await SecureStore.setItemAsync('userToken', response.data.token);
             }
             return response.data;
         } catch (error) {
